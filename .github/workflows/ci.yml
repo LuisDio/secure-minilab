@@ -62,7 +62,7 @@ jobs:
           version: "latest"
 
       - name: Install OPA
-        run: scripts/install_conftest.sh
+        run: bash scripts/install_conftest.sh
 
       - name: Run OPA Policy Checks
         run: conftest test k8s/environments/stage/*.yaml -p policy/ -o json > conftest-stage-report.json
@@ -94,7 +94,7 @@ jobs:
           version: "latest"
 
       - name: Install OPA
-        run: scripts/install_conftest.sh
+        run: bash scripts/install_conftest.sh
 
       - name: Run OPA Policy Checks
         run: conftest test k8s/environments/prod/*.yaml -p policy/ -o json > conftest-prod-report.json
