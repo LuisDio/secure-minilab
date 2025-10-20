@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
         - name: secure-mini-app
-          image: lu23/secure-mini-lab:latest
+          image: lu23/secure-mini-lab:1.0.0
           ports:
             - containerPort: 3000
           securityContext:
