@@ -1,4 +1,4 @@
-FROM node:trixie-slim
+FROM node:alpine3.22
 WORKDIR /usr/src/app
 COPY package*.json ./
 RUN npm ci --omit=dev
