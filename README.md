@@ -1,15 +1,17 @@
-# 🛡️ Secure CI/CD Mini Lab
+# Secure CI/CD Mini Lab
 
-This mini lab simulates a **real-world DevSecOps workflow** with:
-- Node.js web app
-- Docker image build
+This mini lab simulates a **real-world DevSecOps workflow**:
+
+- Node.js Express app
+- Docker container
+- Kubernetes manifests
 - GitHub Actions CI/CD
 - Gitleaks secret scanning
-- Trivy container image scanning
-- Kubernetes deployment (via kind)
+- Trivy container scanning
+- Conftest OPA policy-as-code checks
 
-## 🚀 Getting Started
+## Run locally
 
 ```bash
-npm ci
+npm install
 node app.js

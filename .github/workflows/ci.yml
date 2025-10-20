@@ -26,6 +26,7 @@ jobs:
         with:
           config-path: .gitleaks.toml
           fail: true
+          output-path: gitleaks-report.json
 
       - name: Build Docker Image
         run: docker build -t secure-mini-lab:local .
@@ -34,7 +35,8 @@ jobs:
         uses: aquasecurity/trivy-action@master
         with:
           image-ref: secure-mini-lab:local
-          format: "table"
+          format: "json"
+          output: trivy-report.json
           exit-code: "1"
           severity: "HIGH,CRITICAL"
 
@@ -48,4 +50,15 @@ jobs:
           sudo mv conftest /usr/local/bin
 
       - name: Run OPA Policy Checks
-        run: conftest test k8s/*.yaml -p policy/k8s.rego
+        run: conftest test k8s/*.yaml -p policy/ -o json > conftest-report.json
+
+      # Save all reports as artifacts for SOC2 evidence
+      - name: Upload Security Artifacts
+        uses: actions/upload-artifact@v3
+        with:
+          name: security-reports
+          path: |
+            gitleaks-report.json
+            trivy-report.json
+            conftest-report.json
+            k8s/*.yaml
