@@ -1,0 +1,12 @@
+{
+  "name": "secure-ci-cd-mini-lab",
+  "version": "1.0.0",
+  "description": "Mini DevSecOps Lab for RELEX interview prep",
+  "main": "app.js",
+  "scripts": {
+    "start": "node app.js"
+  },
+  "dependencies": {
+    "express": "^4.19.2"
+  }
+}
