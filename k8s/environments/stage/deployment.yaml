@@ -1,0 +1,21 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: secure-mini-app
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: secure-mini-app
+  template:
+    metadata:
+      labels:
+        app: secure-mini-app
+    spec:
+      containers:
+        - name: secure-mini-app
+          image: lu23/secure-mini-lab:1.0.0
+          ports:
+            - containerPort: 3000
+          securityContext:
+            runAsNonRoot: true
