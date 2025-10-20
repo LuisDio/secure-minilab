@@ -37,3 +37,11 @@ jobs:
           format: "table"
           exit-code: "1"
           severity: "HIGH,CRITICAL"
+
+      - name: Install OPA
+        run: |
+          sudo wget -O /usr/local/bin/opa https://openpolicyagent.org/downloads/latest/opa_linux_amd64_static
+          sudo chmod +x /usr/local/bin/opa
+
+      - name: Run OPA Policy Checks
+        run: conftest test k8s/*.yaml -p policy/k8s.rego
