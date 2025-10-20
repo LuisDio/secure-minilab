@@ -1,7 +1,7 @@
 package main
 
 # Rule 1: Improved image tag check
-deny[msg] {
+deny contains msg if {
     input.kind == "Deployment"
     container := input.spec.template.spec.containers[_]
     endswith(container.image, ":latest")
@@ -9,14 +9,14 @@ deny[msg] {
 }
 
 # Rule 2: Enhanced security context check
-deny[msg] {
+deny contains msg if {
     input.kind == "Deployment"
     container := input.spec.template.spec.containers[_]
     not container.securityContext
     msg := sprintf("Container '%v' is missing security context configuration", [container.name])
 }
 
-deny[msg] {
+deny contains msg if {
     input.kind == "Deployment"
     container := input.spec.template.spec.containers[_]
     sc := container.securityContext
